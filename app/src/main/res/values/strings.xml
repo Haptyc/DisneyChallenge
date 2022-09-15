@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DisneyCodeChallenge_FilipPoborca</string>
+    <string name="button_continue">Continue</string>
+    <string name="need_res">People who need reservations</string>
+    <string name="dont_have_res">People who don\'t have reservations</string>
+    <string name="needs_res">At least one Guest in the party must have a reservation. Guests without reservations must remain in the same booking party in order to enter.</string>
+</resources>
