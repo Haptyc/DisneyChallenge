@@ -5,70 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-  <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:layout_constraintTop_toTopOf="parent"
-      >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/need_res"
-        android:textSize="24sp"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        />
 
-  </androidx.appcompat.widget.Toolbar>
-  <ScrollView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:layout_constraintTop_toBottomOf="@+id/toolbar"
-      android:fillViewport="true"
-      >
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-      <androidx.recyclerview.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:layout_constraintTop_toBottomOf="@+id/toolbar"
-          />
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/dont_have_res"
-          android:layout_gravity="center"
-          android:textStyle="bold"
-          android:textSize="22sp"
-          android:textColor="@color/black"
-          />
-      <androidx.recyclerview.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          />
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/needs_res"
-          android:layout_margin="16dp"
-          android:layout_gravity="center"
-          />
-    </LinearLayout>
-  </ScrollView>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Select Guests"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <ImageView
+            android:src="@drawable/back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/invitee_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/banner_constraint_layout"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/banner_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="16dp"
+
+        android:background="@color/banner_color"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/MyTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservation Needed"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/MyTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select at least one guest that has a" />
+
+            <TextView
+                style="@style/MyTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="reservation to continue" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/cancel_button"
+            android:id="@+id/cancel_button"
+            android:layout_marginRight="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/continue_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/button_color"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/button_continue"
-
+        android:allowClickWhenDisabled="false"
+        android:visibility="gone"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:theme="@style/DisneyButton"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.disneycodechallenge_filippoborca">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +15,7 @@
         android:theme="@style/Theme.DisneyCodeChallenge_FilipPoborca"
         tools:targetApi="31">
         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -22,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

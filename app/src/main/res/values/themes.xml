@@ -12,5 +12,14 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="DisneyButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorAccent">@color/button_color</item>
+        <item name="android:colorAccent">@color/button_color</item>
+        <item name="colorButtonNormal">@color/button_color_disabled</item>
+        <item name="android:colorButtonNormal">@color/button_color_disabled</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

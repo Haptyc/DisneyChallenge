@@ -2,92 +2,81 @@ package com.example.disneycodechallenge_filippoborca
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Display
-import androidx.recyclerview.widget.RecyclerView
+import android.util.Log
+import android.view.LayoutInflater
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.disneycodechallenge_filippoborca.databinding.ActivityMainBinding
+import io.reactivex.disposables.CompositeDisposable
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DisneyPersonCheckedCallback {
 
-    var list = ArrayList<Model>()
-    var listTwo = ArrayList<Model>()
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var vm: MainViewModel
+    private val disneyAdapter = DisneyInvitedAdapter(mutableListOf(),this)
 
-    val arrayTwo = arrayOf(
-        "Mcauley Wilde",
-                "Lorenzo Povey",
-                "Sid Allison",
-                "Aubree Philip",
-                "Rubie Bond",
-                "Summer Lara",
-    )
-    val array = arrayOf("Amelia Pratt",
-        "Alaina Rivers",
-        "Sage Bautista",
-        "Savanah Richards",
-        "Bailey Hanson",
-        "Hillary Raymond",
-        "Urijah Pratt",
-        "Landin Wilkerson",
-        "Harper Dickson",
-        "Yoselin Lutz",
-        "Fernanda Mills",
-        "Maxwell Hall",
-        "Trevin Newman",
-        "Chris Walter",
-        "Naima Poole",
-        "Martha Ashley",
-        "Essence Benitez",
-        "Itzel Lee",
-        "Leah Fitzpatrick",
-        "Rose Fritz",
-        "Marlee Mcknight",
-        "Esperanza Rocha",
-        "Tabitha Robles",
-        "Melanie Anderson",
-        "Abbie Holland",
-        "Will Trujillo",
-        "Shaun Higgins",
-        "Moises Holloway",
-        "Jane Faulkner",
-        "Janiah Beasley",
-        "Brenna Downs",
-        "Lydia Andersen",
-        "Madeline Pugh",
-        "Kiara Hudson",
-        "Arthur Cooley",
-        "Aubrey Hinton",
-        "Laila Davila",
-        "Miracle Peters",
-        "Cassidy Pineda",
-        "Cailyn George",
-        "Kiera Baldwin",
-        "Sylvia Graham",
-        "Garrett Owens",
-        "Claudia Williamson",
-        "Howard Gallegos",
-        "Zaiden Bass",
-        "Corinne Booker",
-        "Wayne Gould",
-        "Brady Christensen"
-    )
-
-    lateinit var adapter: CustomAdapter
-    lateinit var secondCustomAdapter: SecondCustomAdapter
-
+    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        showData()
-
-        adapter = CustomAdapter(list)
-        secondCustomAdapter = SecondCustomAdapter(listTwo)
-
-
+        initView()
+        vm = MainViewModel(compositeDisposable)
     }
-    private fun showData(){
-        for (i in 1..47){
-            list.add(Model(array[i]))
+
+    fun initView() {
+        binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        binding.inviteeRecycler.apply {
+            layoutManager = LinearLayoutManager(applicationContext)
+            adapter = disneyAdapter
         }
-        for (i in 1..5){
-            listTwo.add(Model(arrayTwo[i]))
+        setContentView(binding.root)
+        binding.cancelButton.setOnClickListener {
+            vm.disclaimerDismissed()
         }
+    }
+
+    override fun onChanged(dp: DisneyPerson, checked: Boolean) = vm.onChanged(dp, checked)
+
+    override fun onStart() {
+        super.onStart()
+        vm.getListOfInvited()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        vm.stateObservable.observe(this, this::render)
+    }
+
+    fun render(vs: MainViewState) {
+        showError(vs.isError)
+        this.disneyAdapter.updateList(vs.disneyPersons)
+        binding.bannerConstraintLayout
+            .makeVis(vs.showDisclaimer)
+        binding.continueButton
+            .makeVis(!vs.showDisclaimer)
+        binding.continueButton.isEnabled = vs.continueButtonEnabled
+    }
+
+    private fun showError(error: Boolean) {
+        if (error) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.network_error)
+                .setMessage(R.string.network_error_message)
+                .setPositiveButton(R.string.network_error_try_again) { _, _ ->
+                    vm.getListOfInvited()
+                }
+                .setNegativeButton(R.string.network_error_come_back_later) { _, _ ->
+                    Log.d(MainActivity::class.java.name, "Coming back later")
+                }.show()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.dispose()
     }
 }
+
+
+/*
+https://gist.githubusercontent.com/Haptyc/a186440058a8b8f202ece1bc5a1b45b6/raw/060bc7a3a35baab820789f0a3ae3bf42d14c3c3c/peopleinvitelist.json
+ */

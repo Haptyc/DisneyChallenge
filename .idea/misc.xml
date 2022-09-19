@@ -3,10 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/back_arrow.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/cancel_button.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/info_image.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.2625" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18981586401013362" />
+        <entry key="app/src/main/res/layout-v31/activity_main.xml" value="0.29393115942028986" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/checkbox_layout.xml" value="0.20208333333333334" />
         <entry key="app/src/main/res/layout/second_checkbox_layout.xml" value="0.20208333333333334" />
+        <entry key="app/src/main/res/layout/vh_has_res_header.xml" value="0.29393115942028986" />
+        <entry key="app/src/main/res/layout/vh_res_needed_footer.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/vh_res_needed_header.xml" value="0.29393115942028986" />
       </map>
     </option>
   </component>

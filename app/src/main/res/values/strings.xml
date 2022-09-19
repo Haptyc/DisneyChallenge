@@ -2,6 +2,12 @@
     <string name="app_name">DisneyCodeChallenge_FilipPoborca</string>
     <string name="button_continue">Continue</string>
     <string name="need_res">People who need reservations</string>
-    <string name="dont_have_res">People who don\'t have reservations</string>
+    <string name="dont_have_res">These Guests Need Reservations</string>
     <string name="needs_res">At least one Guest in the party must have a reservation. Guests without reservations must remain in the same booking party in order to enter.</string>
+    <string name="have_res">These Guests Have Reservations</string>
+    <string name="booking_explain">At least one Guest in the party must have a reservation. Guests without reservations must remain in the same booking party in order to enter</string>
+    <string name="network_error">Network Error Occurred</string>
+    <string name="network_error_message">An error ocurred, please click try again to try again or come back later.</string>
+    <string name="network_error_try_again">Try again</string>
+    <string name="network_error_come_back_later">Comeback later</string>
 </resources>
